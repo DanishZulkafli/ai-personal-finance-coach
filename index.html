@@ -3,26 +3,113 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Personal Finance Coach</title>
+
+  <title>AI Personal Finance Coach Pro</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main class="app">
     <section class="hero">
-      <span class="tag">AI Portfolio Project</span>
-      <h1>AI Personal Finance Coach</h1>
-      <p>
-        Analyze your monthly income, expenses, and savings goal to receive
-        AI-style budgeting insights and financial improvement suggestions.
-      </p>
+      <div>
+        <span class="tag">AI Portfolio Project</span>
+        <h1>AI Personal Finance Coach Pro</h1>
+        <p>
+          Analyze your income, expenses, savings goal, emergency fund, debt pressure,
+          and spending habits to receive AI-style budgeting insights and action plans.
+        </p>
+
+        <div class="hero-actions">
+          <button onclick="scrollToForm()">Analyze Budget</button>
+          <button class="ghost" onclick="loadDemoData()">Load Demo Data</button>
+          <button class="ghost" onclick="exportCSV()">Export CSV</button>
+          <button class="ghost" onclick="exportJSON()">Export JSON</button>
+          <button class="danger" onclick="clearHistory()">Clear History</button>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <span>Financial Health</span>
+        <h2 id="heroScore">0%</h2>
+        <p id="heroStatus">No analysis yet</p>
+        <div class="progress-bg">
+          <div id="heroProgress"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <div class="stat-card">
+        <span>Monthly Income</span>
+        <strong id="statIncome">RM 0</strong>
+      </div>
+
+      <div class="stat-card">
+        <span>Total Expenses</span>
+        <strong id="statExpenses">RM 0</strong>
+      </div>
+
+      <div class="stat-card">
+        <span>Monthly Balance</span>
+        <strong id="statBalance">RM 0</strong>
+      </div>
+
+      <div class="stat-card">
+        <span>Savings Rate</span>
+        <strong id="statSavingsRate">0%</strong>
+      </div>
+
+      <div class="stat-card">
+        <span>Expense Ratio</span>
+        <strong id="statExpenseRatio">0%</strong>
+      </div>
+
+      <div class="stat-card">
+        <span>Emergency Runway</span>
+        <strong id="statRunway">0 months</strong>
+      </div>
+
+      <div class="stat-card">
+        <span>Debt Pressure</span>
+        <strong id="statDebt">0%</strong>
+      </div>
+
+      <div class="stat-card">
+        <span>Budget Score</span>
+        <strong id="statScore">0%</strong>
+      </div>
     </section>
 
     <section class="layout">
-      <div class="card">
+      <div class="card" id="financeForm">
         <h2>Monthly Finance Details</h2>
 
+        <label for="currency">Currency</label>
+        <select id="currency">
+          <option value="RM">RM - Malaysian Ringgit</option>
+          <option value="SGD">SGD - Singapore Dollar</option>
+          <option value="USD">USD - US Dollar</option>
+          <option value="GBP">GBP - British Pound</option>
+        </select>
+
         <label for="income">Monthly Income</label>
-        <input type="number" id="income" placeholder="Example: 3200" />
+        <input type="number" id="income" placeholder="Example: 4600" />
+
+        <div class="mini-grid">
+          <div>
+            <label for="savingGoal">Monthly Saving Goal</label>
+            <input type="number" id="savingGoal" placeholder="Example: 800" />
+          </div>
+
+          <div>
+            <label for="currentSavings">Current Savings</label>
+            <input type="number" id="currentSavings" placeholder="Example: 3000" />
+          </div>
+        </div>
+
+        <label for="emergencyTarget">Emergency Fund Target</label>
+        <input type="number" id="emergencyTarget" placeholder="Example: 10000" />
+
+        <h3>Monthly Expenses</h3>
 
         <label for="rent">Rent / Housing</label>
         <input type="number" id="rent" placeholder="Example: 800" />
@@ -36,31 +123,107 @@
         <label for="bills">Bills & Utilities</label>
         <input type="number" id="bills" placeholder="Example: 300" />
 
-        <label for="entertainment">Entertainment / Lifestyle</label>
-        <input type="number" id="entertainment" placeholder="Example: 250" />
+        <label for="lifestyle">Entertainment / Lifestyle</label>
+        <input type="number" id="lifestyle" placeholder="Example: 250" />
 
-        <label for="others">Other Expenses</label>
-        <input type="number" id="others" placeholder="Example: 200" />
+        <label for="subscriptions">Subscriptions</label>
+        <input type="number" id="subscriptions" placeholder="Example: 80" />
 
-        <label for="savingGoal">Monthly Saving Goal</label>
-        <input type="number" id="savingGoal" placeholder="Example: 500" />
+        <label for="education">Education / Learning</label>
+        <input type="number" id="education" placeholder="Example: 150" />
 
-        <button onclick="analyzeFinance()">Analyze My Budget</button>
-        <button class="secondary" onclick="loadDemo()">Load Demo Data</button>
+        <label for="debt">Debt / Loan Payment</label>
+        <input type="number" id="debt" placeholder="Example: 300" />
+
+        <label for="other">Other Expenses</label>
+        <input type="number" id="other" placeholder="Example: 200" />
+
+        <button onclick="analyzeBudget()">Analyze My Budget</button>
+        <button class="secondary" onclick="loadDemoData()">Load Demo Data</button>
+        <button class="dark" onclick="printReport()">Print Report</button>
         <button class="danger" onclick="clearHistory()">Clear History</button>
       </div>
 
       <div class="card result-card">
         <h2>Finance Analysis</h2>
-        <div id="result" class="empty">
-          Fill in your monthly details and generate your finance analysis.
+
+        <div id="analysisResult" class="empty-box">
+          <h3>Income is required</h3>
+          <p>Please enter your monthly income before generating the finance analysis.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout second">
+      <div class="card">
+        <h2>Expense Breakdown</h2>
+        <div id="categoryBreakdown">
+          <div class="empty-box">
+            <p>No expense data yet.</p>
+          </div>
+        </div>
+
+        <h3>Budget Rule Comparison</h3>
+        <div id="budgetRule">
+          <div class="empty-box">
+            <p>No budget rule comparison yet.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>What-If Budget Simulator</h2>
+
+        <div class="mini-grid">
+          <div>
+            <label for="reduceLifestyle">Reduce Lifestyle by %</label>
+            <input type="number" id="reduceLifestyle" value="10" />
+          </div>
+
+          <div>
+            <label for="reduceSubscriptions">Reduce Subscriptions by %</label>
+            <input type="number" id="reduceSubscriptions" value="20" />
+          </div>
+
+          <div>
+            <label for="extraIncome">Extra Monthly Income</label>
+            <input type="number" id="extraIncome" value="0" />
+          </div>
+
+          <div>
+            <label for="extraSaving">Extra Saving Target</label>
+            <input type="number" id="extraSaving" value="0" />
+          </div>
+        </div>
+
+        <button onclick="runSimulation()">Run Simulation</button>
+
+        <div id="simulationResult" class="simulation-box">
+          <h3>No simulation yet</h3>
+          <p>Analyze your budget first, then run a what-if simulation.</p>
+        </div>
+
+        <div class="notice-box">
+          <strong>Note:</strong>
+          This app is for budgeting education and personal tracking only. It is not financial advice.
         </div>
       </div>
     </section>
 
     <section class="card history-card">
-      <h2>Analysis History</h2>
-      <div id="history"></div>
+      <div class="history-header">
+        <div>
+          <h2>Analysis History</h2>
+          <p>Review your previous budget checks and financial health scores.</p>
+        </div>
+
+        <div class="history-actions">
+          <button onclick="exportCSV()">Export CSV</button>
+          <button onclick="exportJSON()">Export JSON</button>
+        </div>
+      </div>
+
+      <div id="historyList"></div>
     </section>
   </main>
 
