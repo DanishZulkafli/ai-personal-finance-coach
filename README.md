@@ -1,22 +1,42 @@
-# AI Personal Finance Coach
+# AI Personal Finance Coach Pro
 
-AI Personal Finance Coach is a frontend web application that analyzes monthly income, expenses, saving goals, and provides AI-style budgeting recommendations.
+AI Personal Finance Coach Pro is an interactive budgeting and financial habit tracker that helps users analyze monthly income, expenses, savings goals, emergency fund readiness, debt pressure, and spending habits.
 
-This project is designed as a portfolio-ready financial technology mini system using HTML, CSS, JavaScript, and Local Storage.
+This project is fully static and can be deployed directly using GitHub Pages.
+
+## Live Demo
+
+Live project: https://danishzulkafli.github.io/ai-personal-finance-coach/
 
 ## Features
 
-- Enter monthly income
-- Enter expense categories
-- Calculate total expenses
-- Calculate remaining balance
-- Generate budget health score
-- Show savings goal progress
-- Display expense category breakdown
-- Generate AI-style financial advice
-- Generate AI prompt for deeper financial planning
-- Save recent analysis history using local storage
-- Responsive user interface
+- Monthly income input
+- Currency selection
+- Expense category tracking
+- Savings goal tracking
+- Current savings tracking
+- Emergency fund target tracking
+- Debt payment tracking
+- Monthly balance calculation
+- Savings rate calculation
+- Expense ratio calculation
+- Debt pressure calculation
+- Emergency runway calculation
+- Budget health score
+- Financial status label
+- AI-style budgeting recommendations
+- 30-day action plan
+- Expense category breakdown
+- 50/30/20 style budget comparison
+- What-if budget simulator
+- Analysis history
+- Export history to CSV
+- Export history to JSON
+- Print budget report
+- Load demo data
+- Clear history
+- LocalStorage persistence
+- Responsive layout
 - GitHub Pages ready
 
 ## Expense Categories
@@ -26,48 +46,67 @@ This project is designed as a portfolio-ready financial technology mini system u
 - Transport
 - Bills & Utilities
 - Entertainment / Lifestyle
+- Subscriptions
+- Education / Learning
+- Debt / Loan Payment
 - Other Expenses
+
+## Budget Metrics
+
+The system calculates:
+
+- Total expenses
+- Monthly balance
+- Savings rate
+- Expense ratio
+- Debt pressure
+- Emergency fund progress
+- Emergency runway
+- Budget score
+- Saving goal gap
 
 ## Tech Stack
 
 - HTML
 - CSS
 - JavaScript
-- Local Storage
+- LocalStorage
 - GitHub Pages
-
-## How It Works
-
-The system calculates the user's total expenses, balance, expense rate, saving rate, and saving goal progress. It then generates a budget health score and provides financial improvement suggestions.
-
-## AI Integration Concept
-
-This version uses JavaScript-based decision logic to simulate AI-style financial advice.
-
-Future AI integration can include:
-
-- OpenAI API
-- Gemini API
-- AI-generated monthly budget plan
-- AI expense reduction strategy
-- AI savings recommendation
-- Spending pattern prediction
-- PDF financial report generation
-
-## Future Improvements
-
-- Add user login
-- Add monthly expense database
-- Add chart visualization
-- Add export to PDF
-- Add dark and light mode
-- Add real AI API integration
-- Add multi-month spending comparison
-- Add currency selection
 
 ## Purpose
 
-This project was created as a portfolio-ready AI-style finance system to demonstrate frontend development, JavaScript logic, local storage, practical fintech use case, and GitHub Pages deployment.
+This project was created as a practical and portfolio-ready financial planning tool. It helps users understand their budget clearly and improve their financial habits through simple insights and action plans.
+
+## Important Note
+
+This app is for educational budgeting and personal tracking only. It is not financial advice. For major financial decisions, users should consult a qualified financial advisor.
+
+## Portfolio Value
+
+This project demonstrates:
+
+- Frontend development
+- JavaScript calculation logic
+- Dashboard statistics
+- Data visualization
+- Form handling
+- LocalStorage data persistence
+- Export functionality
+- Responsive web design
+- Personal finance product thinking
+
+## Future Improvements
+
+- User login
+- Real database
+- PDF report export
+- Monthly comparison charts
+- Recurring expenses tracker
+- Debt payoff calculator
+- Goal progress tracker
+- AI API integration
+- Multi-currency exchange rate support
+- Mobile PWA mode
 
 ## Author
 
